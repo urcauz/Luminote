@@ -7,16 +7,13 @@ import { fileURLToPath } from 'url';
 import http from 'http';
 import { Server } from 'socket.io';
 
-// Clerk, routes, etc. — import your files here:
-import noteRoutes from './routes/noteRoutes.js'; // Adjust as needed
-
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_ORIGIN || "*",
+    origin: "*", // Allow all origins since frontend and backend are on the same domain
     methods: ["GET", "POST"]
   }
 });
@@ -26,13 +23,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
-app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "*", credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json());
 
-// Routes
-app.use('/api/notes', noteRoutes); // Or whatever routes you defined
+// Routes (Backend API)
+app.use('/api/notes', noteRoutes); // Adjust as needed
 
-// Serve frontend build (React)
+// Serve the frontend build
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.get('*', (req, res) => {
@@ -42,11 +39,9 @@ app.get('*', (req, res) => {
 // Socket.io
 io.on('connection', socket => {
   console.log('Client connected');
-
   socket.on('note', data => {
     socket.broadcast.emit('note', data); // broadcast to others
   });
-
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });
