@@ -8,7 +8,7 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background-color: #f8f9fa;
+    background-color: #2e082e;
     color: #333;
     line-height: 1.6;
     padding: 20px;
@@ -28,13 +28,13 @@ body {
 .header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #4f46e5;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 
 .header p {
     font-size: 1.1rem;
-    color: #666;
+    color: #ffffff;
 }
 
 .controls {
@@ -218,18 +218,18 @@ body {
 
 .empty-state i {
     font-size: 4rem;
-    color: #ddd;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .empty-state h3 {
     font-size: 1.5rem;
-    color: #666;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 
 .empty-state p {
-    color: #999;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
