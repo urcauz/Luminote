@@ -8,11 +8,38 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background-color: #2e082e;
+    background-color: #000000;
     color: #333;
     line-height: 1.6;
     padding: 20px;
+    position: relative;
+    z-index: 0;
 }
+
+/* --- 🔥 VIDEO BACKGROUND --- */
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
+
+.video-overlay {
+    position: fixed;        
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+/* --- END VIDEO BACKGROUND --- */
 
 .container {
     max-width: 1200px;
@@ -74,7 +101,7 @@ body {
 
 .add-btn {
     background-color: #4f46e5;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 8px;
     padding: 12px 20px;
@@ -88,7 +115,7 @@ body {
 }
 
 .add-btn:hover {
-    background-color: #4338ca;
+    background-color: #008cff;
 }
 
 .notes-grid {
@@ -111,11 +138,12 @@ body {
 }
 
 .note-card {
-    background-color: white;
+    background-color: 	#667799;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
 }
 
 .note-card:hover {
@@ -133,22 +161,26 @@ body {
     align-items: flex-start;
     margin-bottom: 15px;
 }
+
 .note-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 80%;
 }
+
 .note-actions {
-    display: flex;
-    gap: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
 }
 
 .delete-btn {
-    color: #999;
+    color: #9b9b9b;
     background: none;
     border: none;
     font-size: 1rem;
@@ -160,8 +192,9 @@ body {
     color: #ef4444;
 }
 
+
 .note-text {
-    color: #666;
+    color: #000000;
     margin-bottom: 40px;
     white-space: pre-line;
 }
@@ -206,7 +239,7 @@ body {
 
 .note-date {
     font-size: 0.75rem;
-    color: #999;
+    color: #242424;
 }
 
 .empty-state {
@@ -248,6 +281,7 @@ body {
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
+
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -267,6 +301,7 @@ body {
 .modal-overlay.active .modal {
     transform: translateY(0);
 }
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -274,10 +309,12 @@ body {
     padding: 20px;
     border-bottom: 1px solid #eee;
 }
+
 .modal-title {
     font-size: 1.25rem;
     font-weight: 600;
 }
+
 .modal-close {
     background: none;
     border: none;
@@ -286,13 +323,15 @@ body {
     cursor: pointer;
     transition: color 0.3s;
 }
+
 .modal-close:hover {
     color: #666;
 }
+
 .modal-body {
     padding: 20px;
 }
- 
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -346,17 +385,6 @@ body {
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -385,23 +413,23 @@ body {
     transition: all 0.3s;
 }
 
-.tag-radio:checked+.tag-label {
+.tag-radio:checked + .tag-label {
     color: white;
 }
 
-.tag-radio:checked+.tag-work {
+.tag-radio:checked + .tag-work {
     background-color: #4f46e5;
 }
 
-.tag-radio:checked+.tag-personal {
+.tag-radio:checked + .tag-personal {
     background-color: #7c3aed;
 }
 
-.tag-radio:checked+.tag-ideas {
+.tag-radio:checked + .tag-ideas {
     background-color: #10b981;
 }
 
-.tag-radio:checked+.tag-reminders {
+.tag-radio:checked + .tag-reminders {
     background-color: #f59e0b;
 }
 
@@ -471,7 +499,6 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
